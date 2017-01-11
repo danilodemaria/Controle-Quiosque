@@ -1,0 +1,23 @@
+create user controle with password '1234'
+create database controleBD with owner controle
+
+create table produto(
+	id serial primary key,
+	nome varchar(50),
+	preco decimal(10,2)
+);
+
+create table lancamento(
+	id serial primary key,
+	id_produto integer,
+	quantidade integer,
+	valor_total decimal(10,2),
+	nome varchar(50),
+	data_venda timestamp
+);
+
+ALTER TABLE lancamento ADD FOREIGN KEY (id_produto) REFERENCES produto(id);
+
+SELECT SUM(VALOR_TOTAL) from lancamento
+
+SELECT SUM(VALOR_TOTAL) from lancamento WHERE id_produto != 19
